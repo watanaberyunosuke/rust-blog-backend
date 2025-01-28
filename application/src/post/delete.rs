@@ -26,23 +26,28 @@ pub fn delete_post(post_id: i32) -> Result<Vec<Post>, NotFound<String>> {
                 _ => {
                     panic!("Database error - {}", err);
                 }
-            }
+            },
         };
 
     if num_delete > 0 {
-        match posts::table.select(posts::all_columns).load::<Post>(&mut establish_connection()) {
+        match posts::table
+            .select(posts::all_columns)
+            .load::<Post>(&mut establish_connection())
+        {
             Ok(mut posts_) => {
                 posts_.sort();
                 Ok(posts_)
-            },
+            }
             Err(err) => match err {
                 _ => {
                     panic!("Database error - {}", err);
                 }
-            }
+            },
         }
-    } else { 
-        response = Response{ body: ResponseBody::Message(format!("Error no post with id {}", post_id))};
+    } else {
+        response = Response {
+            body: ResponseBody::Message(format!("Error no post with id {}", post_id)),
+        };
         Err(NotFound(serde_json::to_string(&response).unwrap()))
     }
 }
