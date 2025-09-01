@@ -20,7 +20,7 @@ pub fn list_post(post_id: i32) -> Result<Post, NotFound<String>> {
                         post_id, err
                     )),
                 };
-                return Err(NotFound(serde_json::to_string(&response).unwrap()));
+                Err(NotFound(serde_json::to_string(&response).unwrap()))
             }
             _ => {
                 panic!("Database err occurred - {}", err);
@@ -40,10 +40,8 @@ pub fn list_posts() -> Vec<Post> {
             posts.sort();
             posts
         }
-        Err(err) => match err {
-            _ => {
-                panic!("Database error occurred - {}", err);
-            }
+        Err(err) => {
+            panic!("Database error occurred - {}", err)
         },
     }
 }

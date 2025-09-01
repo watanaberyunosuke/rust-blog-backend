@@ -20,7 +20,7 @@ pub fn publish_post(post_id: i32) -> Result<Post, NotFound<String>> {
                         post_id, err
                     )),
                 };
-                return Err(NotFound(serde_json::to_string(&response).unwrap()));
+                Err(NotFound(serde_json::to_string(&response).unwrap()))
             }
             _ => {
                 panic!("Database error - {}", err);
