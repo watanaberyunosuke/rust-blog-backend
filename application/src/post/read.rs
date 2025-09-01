@@ -42,6 +42,6 @@ pub fn list_posts() -> Vec<Post> {
         }
         Err(err) => {
             panic!("Database error occurred - {}", err)
-        },
+        }
     }
 }
