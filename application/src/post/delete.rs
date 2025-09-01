@@ -38,11 +38,9 @@ pub fn delete_post(post_id: i32) -> Result<Vec<Post>, NotFound<String>> {
                 posts_.sort();
                 Ok(posts_)
             }
-            Err(err) => match err {
-                _ => {
-                    panic!("Database error - {}", err);
-                }
-            },
+            Err(err) => {
+                panic!("Database error - {}", err);
+            }
         }
     } else {
         response = Response {
