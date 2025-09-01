@@ -21,7 +21,7 @@ pub fn create_post(post: Json<NewPost>) -> Created<String> {
             Created::new("").tagged_body(serde_json::to_string(&response).unwrap())
         }
         Err(err) => {
-             panic!("Database error - {}", err);
+            panic!("Database error - {}", err);
         }
     }
 }

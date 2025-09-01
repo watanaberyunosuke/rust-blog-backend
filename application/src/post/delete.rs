@@ -40,7 +40,7 @@ pub fn delete_post(post_id: i32) -> Result<Vec<Post>, NotFound<String>> {
             }
             Err(err) => {
                 panic!("Database error - {}", err);
-            },
+            }
         }
     } else {
         response = Response {

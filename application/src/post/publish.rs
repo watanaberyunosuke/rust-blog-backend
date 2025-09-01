@@ -25,6 +25,6 @@ pub fn publish_post(post_id: i32) -> Result<Post, NotFound<String>> {
             _ => {
                 panic!("Database error - {}", err);
             }
-        }
+        },
     }
 }
